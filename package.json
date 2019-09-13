@@ -9,7 +9,6 @@
     "prod-api-test": "newman run tests/Topic API.postman_collection.json"
   },
   "author": "Adil Ansari",
-  "license": "ISC",
   "dependencies": {
     "newman": "^4.5.4"
   }
