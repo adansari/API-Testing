@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "767b04d2-7dc0-4b67-b9a5-d0a899347085",
+		"name": "Topic API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Topics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c0afccb-fd69-48dd-8ca9-c313a60665e2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Topics are spring, hibernate and java\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"id\\\":\\\"spring\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"id\\\":\\\"hibernate\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"id\\\":\\\"java\\\"\");",
+							"});",
+							"",
+							"pm.test(\"Topics count is 3\", function () {",
+							"    pm.expect(pm.response.json().length).to.eql(3);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/topics/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topics",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add/Post new Topic",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87b75e0d-1e43-4837-9a8a-1281c2737478",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Body matches topic\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"id\\\":\\\"new spring\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"name\\\":\\\"New Spring Framework\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"description\\\":\\\"New Spring Framework description\\\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"new spring\",\n    \"name\": \"New Spring Framework\",\n    \"description\": \"New Spring Framework description\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/topics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update existing Topic",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2288334-9512-46ec-8642-3b002232a8a3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches topic\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"id\\\":\\\"new spring\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"name\\\":\\\"Updated Spring Framework\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"description\\\":\\\"Updated Spring Framework description\\\"\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"new spring\",\n    \"name\": \"Updated Spring Framework\",\n    \"description\": \"Updated Spring Framework description\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/topics/new spring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topics",
+						"new spring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single Topic",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6b19225-1a4e-42c3-a4d7-dfb04fd01056",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    ",
+							"    pm.test(\"Body matches topic\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"id\\\":\\\"spring\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"name\\\":\\\"Spring Framework\\\"\");",
+							"    pm.expect(pm.response.text()).to.include(\"\\\"description\\\":\\\"Spring Framework description\\\"\");",
+							"});",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/topics/spring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topics",
+						"spring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Topic",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "faec5e07-d65b-4e62-8208-521091235d7a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/topics/new spring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topics",
+						"new spring"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
