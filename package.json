@@ -1,0 +1,22 @@
+{
+  "name": "newmanapitesting",
+  "version": "1.0.0",
+  "description": "Newman API testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adansari/API-Testing.git"
+  },
+  "author": "Adil Ansari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adansari/API-Testing/issues"
+  },
+  "homepage": "https://github.com/adansari/API-Testing#readme",
+  "dependencies": {
+    "newman": "^4.5.4"
+  }
+}
