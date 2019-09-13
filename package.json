@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "prod-api-test": "newman run tests/Topic API.postman_collection.json"
+    "prod-api-test": "newman run tests/Topic_API.postman_collection.json"
   },
   "author": "Adil Ansari",
   "dependencies": {
